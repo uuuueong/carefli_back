@@ -1,8 +1,8 @@
 package gradproject.carefli.connection.domain;
 
-import gradproject.carefuli.global.entity.BaseTimeEntity;
-import gradproject.carefuli.user.domain.InterestTag;
-import gradproject.carefuli.user.domain.MBTI;
+import gradproject.carefli.global.entity.BaseTimeEntity;
+import gradproject.carefli.user.domain.InterestTag;
+import gradproject.carefli.user.domain.MBTI;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;

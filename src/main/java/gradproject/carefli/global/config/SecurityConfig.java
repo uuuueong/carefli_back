@@ -1,7 +1,7 @@
 package gradproject.carefli.global.config;
 
-import gradproject.carefuli.oauth.errorHandler.CustomJwtAuthenticationEntryPoint;
-import gradproject.carefuli.oauth.jwt.JwtAuthenticationFilter;
+import gradproject.carefli.oauth.errorHandler.CustomJwtAuthenticationEntryPoint;
+import gradproject.carefli.oauth.jwt.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

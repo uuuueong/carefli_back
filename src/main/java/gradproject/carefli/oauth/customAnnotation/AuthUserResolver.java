@@ -1,7 +1,7 @@
 package gradproject.carefli.oauth.customAnnotation;
 
-import gradproject.carefuli.oauth.jwt.JwtService;
-import gradproject.carefuli.user.repository.UserRepository;
+import gradproject.carefli.oauth.jwt.JwtService;
+import gradproject.carefli.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.core.userdetails.User;
