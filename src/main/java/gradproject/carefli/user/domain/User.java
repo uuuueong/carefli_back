@@ -1,5 +1,6 @@
 package gradproject.carefli.user.domain;
 
+import gradproject.carefli.connection.domain.Connection;
 import gradproject.carefli.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -7,7 +8,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,6 +20,9 @@ public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(updatable = false)
     private Long userId;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    List<Connection> connectionList = new ArrayList<>();
 
     @Column(nullable = false, unique = true)
     private String email;

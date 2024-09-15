@@ -3,6 +3,7 @@ package gradproject.carefli.connection.domain;
 import gradproject.carefli.global.entity.BaseTimeEntity;
 import gradproject.carefli.user.domain.InterestTag;
 import gradproject.carefli.user.domain.MBTI;
+import gradproject.carefli.user.domain.User;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -19,6 +20,10 @@ public class Connection extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "connection_id", updatable = false)
     private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "userId", updatable = false, nullable = false)
+    private User user;
 
     @Column(name = "connection_name", nullable = false, length = 20)
     private String name;
@@ -51,7 +56,8 @@ public class Connection extends BaseTimeEntity {
     private String position;
 
     @Builder
-    public Connection(String name, String email, Date birthday, String phoneNumber, String connectionImageUrl, InterestTag interestTag, MBTI mbti, Relationship relationship, String companyName, String position) {
+    public Connection(User user, String name, String email, Date birthday, String phoneNumber, String connectionImageUrl, InterestTag interestTag, MBTI mbti, Relationship relationship, String companyName, String position) {
+        this.user = user;
         this.name = name;
         this.email = email;
         this.birthday = birthday;
