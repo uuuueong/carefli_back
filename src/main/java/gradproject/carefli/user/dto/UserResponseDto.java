@@ -5,6 +5,7 @@ import gradproject.carefli.global.entity.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import gradproject.carefli.user.domain.InterestTag;
 import gradproject.carefli.user.domain.MBTI;
@@ -20,6 +21,8 @@ public class UserResponseDto extends BaseTimeEntity {
     private String userImageUrl;
     private InterestTag interestTag;
     private MBTI mbti;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
 
     public static UserResponseDto from (User user) {
@@ -29,6 +32,8 @@ public class UserResponseDto extends BaseTimeEntity {
                 user.getBirthday(),
                 user.getUserImageUrl(),
                 user.getInterestTag(),
-                user.getMbti());
+                user.getMbti(),
+                user.getCreatedAt(),
+                user.getUpdatedAt());
     }
 }

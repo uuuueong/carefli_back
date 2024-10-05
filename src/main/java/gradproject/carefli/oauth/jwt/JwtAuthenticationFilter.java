@@ -25,7 +25,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     // 필터 건너뛰는 api url (사용자 인증 미필요 api)
     private static final List<String> EXCLUDED_URLS = Arrays.asList(
             "/login/oauth2/kakao", // 로그인
-            "/api/oauth/reissue"  // 액세스 토큰 재발급
+            "/api/oauth/reissue",  // 액세스 토큰 재발급
+            "/gifts/list",
+            "/gifts/details",
+            "/gifts/recommended/save",
+            "/gifts/like",
+            "/gifts/recommendations/**"
     );
 
     @Override

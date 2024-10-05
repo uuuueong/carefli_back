@@ -1,6 +1,7 @@
 package gradproject.carefli.user.domain;
 
 import gradproject.carefli.connection.domain.Connection;
+import gradproject.carefli.giftRecommendationSet.domain.GiftRecommendationSet;
 import gradproject.carefli.global.entity.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -18,13 +19,16 @@ import java.util.List;
 public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(updatable = false)
+    @Column(name = "userId", updatable = false)
     private Long userId;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<GiftRecommendationSet> giftRecommendationSets = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     List<Connection> connectionList = new ArrayList<>();
 
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false, unique = true, updatable = false)
     private String email;
 
     @Column(length = 16, unique = true)
@@ -65,17 +69,9 @@ public class User extends BaseTimeEntity {
     // 회원 정보 수정
     public void updateUser(String nickname, Date birthday, String userImageUrl, InterestTag interestTag, MBTI mbti){
         this.nickname = nickname;
-        if (birthday != null) {
-            this.birthday = birthday;
-        }
-        if (userImageUrl != null) {
-            this.userImageUrl = userImageUrl;
-        }
-        if (interestTag != null) {
-            this.interestTag = interestTag;
-        }
-        if (mbti != null) {
-            this.mbti = mbti;
-        }
+        this.birthday = birthday;
+        this.userImageUrl = userImageUrl;
+        this.interestTag = interestTag;
+        this.mbti = mbti;
     }
 }

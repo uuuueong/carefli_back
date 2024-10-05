@@ -1,8 +1,10 @@
 package gradproject.carefli.connection.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import gradproject.carefli.connection.domain.Connection;
 import gradproject.carefli.user.domain.InterestTag;
 import gradproject.carefli.user.domain.MBTI;
+import gradproject.carefli.user.domain.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,8 +14,7 @@ import java.util.Date;
 
 @Getter
 @NoArgsConstructor
-public class ConnectionUpdateRequestDto {
-    private Long connectionId;
+public class ConnectionRequestDto {
     private String connectionName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
@@ -24,15 +25,26 @@ public class ConnectionUpdateRequestDto {
     private String connectionImageUrl;
 
     @Builder
-    public ConnectionUpdateRequestDto(Long connectionId, String connectionName, Date birthday,InterestTag interestTag, MBTI mbti,
-                                      String relationship, String connectionImageUrl) {
-        this.connectionId = connectionId;
+    public ConnectionRequestDto(String connectionName, Date birthday, InterestTag interestTag, MBTI mbti, String relationship,
+                                String connectionImageUrl) {
         this.connectionName = connectionName;
         this.birthday = birthday;
         this.interestTag = interestTag;
         this.mbti = mbti;
         this.relationship = relationship;
         this.connectionImageUrl = connectionImageUrl;
+    }
+
+    public Connection toEntity(User user) {
+        return Connection.builder()
+                .user(user)
+                .name(connectionName)
+                .birthday(birthday)
+                .interestTag(interestTag)
+                .mbti(mbti)
+                .relationship(relationship)
+                .connectionImageUrl(connectionImageUrl)
+                .build();
     }
 
 }

@@ -4,7 +4,7 @@ import gradproject.carefli.oauth.jwt.JwtService;
 import gradproject.carefli.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.MethodParameter;
-import org.springframework.security.core.userdetails.User;
+import gradproject.carefli.user.domain.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;

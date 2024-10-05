@@ -15,8 +15,10 @@ public enum ErrorCode {
     INTERNAL_SERVER_ERROR(HttpStatus.INTERNAL_SERVER_ERROR, "INTERNAL SERVER ERROR"),// 예상치 못한 에러
 
     // User
-    USER_NOT_FOUND_BY_EMAIL(HttpStatus.NOT_FOUND, "해당 email를 가진 User를 찾을 수 없습니다.");
+    USER_NOT_FOUND_BY_EMAIL(HttpStatus.NOT_FOUND, "해당 email를 가진 User를 찾을 수 없습니다."),
 
+    // Connection
+    CONNECTION_NOT_FOUND(HttpStatus.NOT_FOUND, "해당 Connection을 찾을 수 없습니다.");
     private final HttpStatus status;
     private final String message;
 }

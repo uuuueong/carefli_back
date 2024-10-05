@@ -1,6 +1,7 @@
 package gradproject.carefli.connection.domain;
 
 import gradproject.carefli.global.entity.BaseTimeEntity;
+import gradproject.carefli.connection.dto.ConnectionUpdateRequestDto;
 import gradproject.carefli.user.domain.InterestTag;
 import gradproject.carefli.user.domain.MBTI;
 import gradproject.carefli.user.domain.User;
@@ -18,24 +19,18 @@ import java.util.Date;
 public class Connection extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "connection_id", updatable = false)
-    private Long id;
+    @Column(name = "connectionId", updatable = false)
+    private Long connectionId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userId", updatable = false, nullable = false)
+    @JoinColumn(name = "userId", nullable = false)
     private User user;
 
-    @Column(name = "connection_name", nullable = false, length = 20)
+    @Column(name = "connectionName", nullable = false, length = 20)
     private String name;
-
-    @Column
-    private String email;
 
     @Temporal(TemporalType.DATE)
     private Date birthday;
-
-    @Column
-    private String phoneNumber;
 
     @Column
     private String connectionImageUrl;
@@ -46,28 +41,28 @@ public class Connection extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private MBTI mbti;
 
-    @Enumerated(EnumType.STRING)
-    private Relationship relationship;
-
     @Column(length = 50)
-    private String companyName;
-
-    @Column(length = 50)
-    private String position;
+    private String relationship;
 
     @Builder
-    public Connection(User user, String name, String email, Date birthday, String phoneNumber, String connectionImageUrl, InterestTag interestTag, MBTI mbti, Relationship relationship, String companyName, String position) {
+    public Connection(User user, String name, Date birthday, String connectionImageUrl, InterestTag interestTag, MBTI mbti, String relationship) {
         this.user = user;
         this.name = name;
-        this.email = email;
         this.birthday = birthday;
-        this.phoneNumber = phoneNumber;
         this.connectionImageUrl = connectionImageUrl;
         this.interestTag = interestTag;
         this.mbti = mbti;
         this.relationship = relationship;
-        this.companyName = companyName;
-        this.position = position;
+    }
+    public void updateConnection(ConnectionUpdateRequestDto requestDto){
+        this.name = requestDto.getConnectionName();
+        this.birthday = requestDto.getBirthday();
+        this.interestTag = requestDto.getInterestTag();
+        this.mbti = requestDto.getMbti();
+        this.connectionImageUrl = requestDto.getConnectionImageUrl();
+        this.relationship = requestDto.getRelationship();
     }
 
+
 }
+

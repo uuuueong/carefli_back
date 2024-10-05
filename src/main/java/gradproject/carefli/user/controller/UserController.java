@@ -20,7 +20,7 @@ public class UserController {
     private final UserService userService;
     private final KakaoApiClient kakaoApiClient;
 
-    /* 회원 정보 조회 */
+    // 회원 정보 조회
     @GetMapping
     @ResponseStatus(value = HttpStatus.OK)
     public UserResponseDto getUser(@AuthUser User user){
