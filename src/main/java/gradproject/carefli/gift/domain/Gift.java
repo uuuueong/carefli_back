@@ -19,36 +19,39 @@ public class Gift {
     @Column(name = "giftId", updatable = false)
     private Long giftId;
 
-    @Column
+    @Column(nullable = false)
     private String category;
 
-    @Column(nullable = true)
+    @Column
     private String subCategory;
 
-    @Column
+    @Column(nullable = false)
     private String giftName;
 
-    @Column
+    @Column(nullable = false)
     private int price;
 
     @Column
+    private String occasionType;
+
+    @Column(nullable = false, length = 1024)
     private String giftUrl;
 
-    @Column
+    @Column(length = 1024)
     private String giftImageUrl;
 
     @OneToMany(mappedBy = "gift", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<RecommendedGift> recommendedGifts = new ArrayList<>();
 
     @Builder
-    public Gift(Long giftId, String category, String subCategory, String giftName, int price, String giftUrl, String giftImageUrl) {
+    public Gift(Long giftId, String category, String subCategory, String giftName, int price, String occasionType, String giftUrl, String giftImageUrl) {
         this.giftId = giftId;
         this.category = category;
         this.subCategory = subCategory;
         this.giftName = giftName;
         this.price = price;
+        this.occasionType = occasionType;
         this.giftUrl = giftUrl;
         this.giftImageUrl = giftImageUrl;
     }
-
 }
