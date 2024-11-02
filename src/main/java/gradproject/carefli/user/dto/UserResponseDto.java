@@ -7,7 +7,7 @@ import lombok.Getter;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import gradproject.carefli.user.domain.InterestTag;
+
 import gradproject.carefli.user.domain.MBTI;
 import gradproject.carefli.user.domain.User;
 @Getter
@@ -19,7 +19,7 @@ public class UserResponseDto extends BaseTimeEntity {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthday;
     private String userImageUrl;
-    private InterestTag interestTag;
+    private String interestTag;
     private MBTI mbti;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

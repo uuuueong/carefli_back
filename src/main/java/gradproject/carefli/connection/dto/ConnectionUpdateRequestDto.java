@@ -1,7 +1,6 @@
 package gradproject.carefli.connection.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import gradproject.carefli.user.domain.InterestTag;
 import gradproject.carefli.user.domain.MBTI;
 import lombok.Builder;
 import lombok.Getter;
@@ -18,13 +17,13 @@ public class ConnectionUpdateRequestDto {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthday;
-    private InterestTag interestTag;
+    private String interestTag;
     private MBTI mbti;
     private String relationship;
     private String connectionImageUrl;
 
     @Builder
-    public ConnectionUpdateRequestDto(Long connectionId, String connectionName, Date birthday,InterestTag interestTag, MBTI mbti,
+    public ConnectionUpdateRequestDto(Long connectionId, String connectionName, Date birthday, String interestTag, MBTI mbti,
                                       String relationship, String connectionImageUrl) {
         this.connectionId = connectionId;
         this.connectionName = connectionName;

@@ -3,7 +3,6 @@ package gradproject.carefli.connection.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import gradproject.carefli.connection.domain.*;
 import gradproject.carefli.global.entity.BaseTimeEntity;
-import gradproject.carefli.user.domain.InterestTag;
 import gradproject.carefli.user.domain.MBTI;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -23,14 +22,14 @@ public class ConnectionResponseDto extends BaseTimeEntity {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthday;
     private String connectionImageUrl;
-    private InterestTag interestTag;
+    private String interestTag;
     private MBTI mbti;
     private String relationship;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     public ConnectionResponseDto(Long connectionId, Long userId, String connectionName,
-                                 Date birthday, String connectionImageUrl, InterestTag interestTag,
+                                 Date birthday, String connectionImageUrl, String interestTag,
                                  MBTI mbti, String relationship, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.connectionId = connectionId;
         this.userId = userId;

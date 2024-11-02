@@ -2,7 +2,6 @@ package gradproject.carefli.connection.domain;
 
 import gradproject.carefli.global.entity.BaseTimeEntity;
 import gradproject.carefli.connection.dto.ConnectionUpdateRequestDto;
-import gradproject.carefli.user.domain.InterestTag;
 import gradproject.carefli.user.domain.MBTI;
 import gradproject.carefli.user.domain.User;
 import jakarta.persistence.*;
@@ -35,17 +34,17 @@ public class Connection extends BaseTimeEntity {
     @Column
     private String connectionImageUrl;
 
-    @Enumerated(EnumType.STRING)
-    private InterestTag interestTag;
+    @Column
+    private String interestTag;
 
     @Enumerated(EnumType.STRING)
     private MBTI mbti;
 
-    @Column(length = 50)
+    @Column(nullable = false, length = 50)
     private String relationship;
 
     @Builder
-    public Connection(User user, String name, Date birthday, String connectionImageUrl, InterestTag interestTag, MBTI mbti, String relationship) {
+    public Connection(User user, String name, Date birthday, String connectionImageUrl, String interestTag, MBTI mbti, String relationship) {
         this.user = user;
         this.name = name;
         this.birthday = birthday;
