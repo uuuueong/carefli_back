@@ -31,7 +31,7 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false, unique = true, updatable = false)
     private String email;
 
-    @Column(length = 16, unique = true)
+    @Column(nullable = false, length = 16, unique = true)
     private String nickname;
 
     @Temporal(TemporalType.DATE)
@@ -41,17 +41,17 @@ public class User extends BaseTimeEntity {
     @Column(length = 512)
     private String userImageUrl;
 
-    @Column
+    @Column(nullable = false)
     private String kakaoAccessToken;
 
-    @Enumerated(EnumType.STRING)
-    private InterestTag interestTag;
+    @Column
+    private String interestTag;
 
     @Enumerated(EnumType.STRING)
     private MBTI mbti;
 
     @Builder
-    public User(String nickname, Date birthday, String email, String userImageUrl, String kakaoAccessToken, InterestTag interestTag, MBTI mbti) {
+    public User(String nickname, Date birthday, String email, String userImageUrl, String kakaoAccessToken, String interestTag, MBTI mbti) {
         this.nickname = nickname;
         this.birthday = birthday;
         this.email = email;
@@ -67,7 +67,7 @@ public class User extends BaseTimeEntity {
     }
 
     // 회원 정보 수정
-    public void updateUser(String nickname, Date birthday, String userImageUrl, InterestTag interestTag, MBTI mbti){
+    public void updateUser(String nickname, Date birthday, String userImageUrl, String interestTag, MBTI mbti){
         this.nickname = nickname;
         this.birthday = birthday;
         this.userImageUrl = userImageUrl;
