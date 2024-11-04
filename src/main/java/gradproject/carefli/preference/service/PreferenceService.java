@@ -36,22 +36,23 @@ public class PreferenceService {
                 .orElseThrow(() -> new IllegalArgumentException("Gift not found"));
 
         Preference preference = preferenceRepository.findByGiftAndConnection(gift, connection)
-                .orElseGet(() -> Preference.builder()
-                        .gift(gift)
-                        .user(user)
-                        .connection(connection)
-                        .category(gift.getCategory())
-                        .mbti(connectionMbti)
-                        .preferenceCount(0)
-                        .build());
-        if (preference.getPreferenceCount() == 1){
-            preference.subPreferenceCount();
-        }
-        else {
-            preference.addPreferenceCount();
-        }
+                .orElse(null);
 
-        preferenceRepository.save(preference);
+        if (preference != null) {
+            // 이미 좋아요가 된 상태면, 좋아요 취소 후 Preference 삭제
+            preferenceRepository.delete(preference);
+        } else {
+            // 좋아요가 없는 상태면, Preference 객체를 생성하고 저장
+            preference = Preference.builder()
+                    .gift(gift)
+                    .user(user)
+                    .connection(connection)
+                    .category(gift.getCategory())
+                    .mbti(connectionMbti)
+                    .preferenceCount(1)
+                    .build();
+            preferenceRepository.save(preference);
+        }
     }
 
     //좋아요한 선물 히스토리 조회
