@@ -50,7 +50,12 @@ public class Preference {
         this.preferenceCount = preferenceCount;
     }
 
-    public void incrementPreferenceCount() {
+    public void addPreferenceCount() {
         this.preferenceCount += 1;
     }
+
+    public void subPreferenceCount() {
+        this.preferenceCount -= 1;
+    }
+
 }

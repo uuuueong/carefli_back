@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.xml.stream.events.Comment;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,8 +44,13 @@ public class PreferenceService {
                         .mbti(connectionMbti)
                         .preferenceCount(0)
                         .build());
+        if (preference.getPreferenceCount() == 1){
+            preference.subPreferenceCount();
+        }
+        else {
+            preference.addPreferenceCount();
+        }
 
-        preference.incrementPreferenceCount();
         preferenceRepository.save(preference);
     }
 
