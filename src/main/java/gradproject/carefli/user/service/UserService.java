@@ -52,7 +52,7 @@ public class UserService {
         }
 
 
-        user.updateUser(requestDto.getNickname(), requestDto.getBirthday(), requestDto.getUserImageUrl(), requestDto.getInterestTag(), requestDto.getMbti());
+        user.updateUser(requestDto.getNickname(), requestDto.getBirthday(), userImageUrl, requestDto.getInterestTag(), requestDto.getMbti());
         return userRepository.save(user);
     }
 
