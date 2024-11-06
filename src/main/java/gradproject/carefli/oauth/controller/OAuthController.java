@@ -28,6 +28,4 @@ public class OAuthController {
     public ResponseEntity<JwtTokens> reissueAccessToken(HttpServletRequest request){
         return ResponseEntity.ok(jwtService.reissueAccessToken(request));
     }
-
-
 }
