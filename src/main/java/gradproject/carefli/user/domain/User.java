@@ -41,7 +41,7 @@ public class User extends BaseTimeEntity {
     @Column(length = 512)
     private String userImageUrl;
 
-    @Column(nullable = false)
+    @Column
     private String kakaoAccessToken;
 
     @Column
