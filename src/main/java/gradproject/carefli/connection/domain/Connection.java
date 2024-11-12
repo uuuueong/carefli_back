@@ -31,7 +31,7 @@ public class Connection extends BaseTimeEntity {
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
-    @Column
+    @Column(length = 1000)
     private String connectionImageUrl;
 
     @Column
@@ -58,10 +58,12 @@ public class Connection extends BaseTimeEntity {
         this.birthday = requestDto.getBirthday();
         this.interestTag = requestDto.getInterestTag();
         this.mbti = requestDto.getMbti();
-        this.connectionImageUrl = requestDto.getConnectionImageUrl();
         this.relationship = requestDto.getRelationship();
     }
 
 
+    public void updateImageUrl(String newFileUrl) {
+        this.connectionImageUrl = newFileUrl;
+    }
 }
 
