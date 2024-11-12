@@ -20,18 +20,16 @@ public class ConnectionUpdateRequestDto {
     private String interestTag;
     private MBTI mbti;
     private String relationship;
-    private String connectionImageUrl;
 
     @Builder
     public ConnectionUpdateRequestDto(Long connectionId, String connectionName, Date birthday, String interestTag, MBTI mbti,
-                                      String relationship, String connectionImageUrl) {
+                                      String relationship) {
         this.connectionId = connectionId;
         this.connectionName = connectionName;
         this.birthday = birthday;
         this.interestTag = interestTag;
         this.mbti = mbti;
         this.relationship = relationship;
-        this.connectionImageUrl = connectionImageUrl;
     }
 
 }

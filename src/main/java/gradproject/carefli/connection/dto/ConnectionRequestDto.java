@@ -21,20 +21,17 @@ public class ConnectionRequestDto {
     private String interestTag;
     private MBTI mbti;
     private String relationship;
-    private String connectionImageUrl;
 
     @Builder
-    public ConnectionRequestDto(String connectionName, Date birthday, String interestTag, MBTI mbti, String relationship,
-                                String connectionImageUrl) {
+    public ConnectionRequestDto(String connectionName, Date birthday, String interestTag, MBTI mbti, String relationship) {
         this.connectionName = connectionName;
         this.birthday = birthday;
         this.interestTag = interestTag;
         this.mbti = mbti;
         this.relationship = relationship;
-        this.connectionImageUrl = connectionImageUrl;
     }
 
-    public Connection toEntity(User user) {
+    public Connection toEntity(User user, String connectionImageUrl) {
         return Connection.builder()
                 .user(user)
                 .name(connectionName)
