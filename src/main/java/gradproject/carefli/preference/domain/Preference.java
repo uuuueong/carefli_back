@@ -10,10 +10,12 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Preference {
+public class Preference{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long preferenceId;
@@ -40,6 +42,9 @@ public class Preference {
     @Column
     private int preferenceCount;
 
+    @Column
+    private LocalDateTime createdAt;
+
     @Builder
     public Preference(Gift gift, User user, Connection connection, String category, MBTI mbti, int preferenceCount) {
         this.gift = gift;
@@ -48,14 +53,6 @@ public class Preference {
         this.category = category;
         this.mbti = mbti;
         this.preferenceCount = preferenceCount;
+        this.createdAt = LocalDateTime.now();
     }
-
-    public void addPreferenceCount() {
-        this.preferenceCount += 1;
-    }
-
-    public void subPreferenceCount() {
-        this.preferenceCount -= 1;
-    }
-
 }

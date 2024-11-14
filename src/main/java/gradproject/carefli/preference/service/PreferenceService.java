@@ -61,7 +61,7 @@ public class PreferenceService {
         Connection connection = connectionRepository.findById(connectionId)
                 .orElseThrow(() -> new IllegalArgumentException("connection not found"));
 
-        List<Preference> preferences = preferenceRepository.findAllByConnection(connection);
+        List<Preference> preferences = preferenceRepository.findAllByConnectionOrderByCreatedAtDesc(connection);
 
         return preferences.stream()
                 .map(preference -> {
@@ -74,6 +74,7 @@ public class PreferenceService {
                             .price(gift.getPrice())
                             .giftUrl(gift.getGiftUrl())
                             .giftImageUrl(gift.getGiftImageUrl())
+                            .createdAt(preference.getCreatedAt())
                             .build();
                 })
                 .collect(Collectors.toList());

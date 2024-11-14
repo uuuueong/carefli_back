@@ -10,7 +10,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,18 +35,10 @@ public class GiftRecommendationSet extends BaseTimeEntity {
     @Column
     private String occasionType;
 
-    @Column
-    private LocalDateTime createdAt;
-
-    @Column
-    private LocalDateTime updatedAt;
-
     @Builder
-    public GiftRecommendationSet(User user, Connection connection, String occasionType, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public GiftRecommendationSet(User user, Connection connection, String occasionType) {
         this.user = user;
         this.connection = connection;
         this.occasionType = occasionType;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 }
