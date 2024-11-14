@@ -31,6 +31,13 @@ public class MessageController {
         return ResponseEntity.ok(messages);
     }
 
+    //인맥별 문구 목록 조회
+    @GetMapping("/history/{connectionId}")
+    public ResponseEntity<List<MessageResponseDto>> getMessageHistory(@AuthUser User user, @PathVariable Long connectionId) {
+        List<MessageResponseDto> messages = messageService.getAllMessagesByConnectionId(user, connectionId);
+        return ResponseEntity.ok(messages);
+    }
+
     //문구 수정
     @PatchMapping("/{messageId}")
     public ResponseEntity<MessageResponseDto> updateMessage(@AuthUser User user, @PathVariable Long messageId, @RequestBody MessageUpdateRequestDto requestDto) {
@@ -44,6 +51,4 @@ public class MessageController {
         messageService.deleteMessage(user, messageId);
         return ResponseEntity.ok("성공적으로 삭제되었습니다.");
     }
-
-
 }

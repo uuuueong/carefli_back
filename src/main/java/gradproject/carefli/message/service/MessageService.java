@@ -7,7 +7,6 @@ import gradproject.carefli.message.dto.MessageRequestDto;
 import gradproject.carefli.message.dto.MessageResponseDto;
 import gradproject.carefli.message.repository.MessageRepository;
 import gradproject.carefli.user.domain.User;
-import gradproject.carefli.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +50,18 @@ public class MessageService {
         }
 
         List<Message> messages = messageRepository.findByUserId(userId);
+        return messages.stream()
+                .map(this::convertToDto)
+                .collect(Collectors.toList());
+    }
+
+    //인맥별 문구 조회
+    @Transactional(readOnly = true)
+    public List<MessageResponseDto> getAllMessagesByConnectionId(User user, Long connectionId) {
+        if (!user.getUserId().equals(connectionId)) {
+            throw new IllegalArgumentException("권한이 없습니다.");
+        }
+        List<Message> messages = messageRepository.findByConnectionIdOrderByUpdatedAtDesc(connectionId);
         return messages.stream()
                 .map(this::convertToDto)
                 .collect(Collectors.toList());

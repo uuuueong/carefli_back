@@ -9,8 +9,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDateTime;
-
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -39,12 +37,6 @@ public class Message extends BaseTimeEntity {
     @Column(nullable = false)
     private String text;
 
-    @Column(nullable = false)
-    private LocalDateTime createdAt;
-
-    @Column(nullable = false)
-    private LocalDateTime updatedAt;
-
     @Builder
     public Message(User user, Connection connection, String occasionType, String tone, int length, String text) {
         this.user = user;
@@ -53,13 +45,10 @@ public class Message extends BaseTimeEntity {
         this.tone = tone;
         this.length = length;
         this.text = text;
-        this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
     }
 
     public void updateContent(String text){
         this.text = text;
-        this.updatedAt = LocalDateTime.now();
     }
 
 }
