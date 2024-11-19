@@ -1,6 +1,7 @@
 package gradproject.carefli.connection.dto;
 
 import gradproject.carefli.connection.domain.Connection;
+import gradproject.carefli.user.domain.MBTI;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,12 +13,14 @@ public class ConnectionListDto {
     private String connectionName;
     private String connectionImageUrl;
     private String relationship;
+    private MBTI mbti;
 
-    public ConnectionListDto(Long connectionId, String connectionName, String connectionImageUrl, String relationship) {
+    public ConnectionListDto(Long connectionId, String connectionName, String connectionImageUrl, String relationship, MBTI mbti) {
         this.connectionId = connectionId;
         this.connectionName = connectionName;
         this.connectionImageUrl = connectionImageUrl;
         this.relationship = relationship;
+        this.mbti = mbti;
     }
 
     public static ConnectionListDto from(Connection connection) {
@@ -25,7 +28,8 @@ public class ConnectionListDto {
                 connection.getConnectionId(),
                 connection.getName(),
                 connection.getConnectionImageUrl(),
-                connection.getRelationship()
+                connection.getRelationship(),
+                connection.getMbti()
         );
     }
 

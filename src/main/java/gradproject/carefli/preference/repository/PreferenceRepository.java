@@ -11,5 +11,5 @@ import java.util.Optional;
 public interface PreferenceRepository extends JpaRepository<Preference, Long> {
     Optional<Preference> findByGiftAndConnection(Gift gift, Connection connection);
 
-    List<Preference> findAllByConnection(Connection connection);
+    List<Preference> findAllByConnectionOrderByCreatedAtDesc(Connection connection);
 }
