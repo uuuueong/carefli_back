@@ -34,7 +34,8 @@ public class SecurityConfig {
             "/gifts/details",
             "/gifts/recommended/save",
             "/gifts/like",
-            "/gifts/recommendations/**"
+            "/gifts/recommendations/**",
+            "/gifts/preference"
     };
 
     // cors 설정

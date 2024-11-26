@@ -6,6 +6,8 @@ import gradproject.carefli.gift.domain.Gift;
 import gradproject.carefli.gift.dto.GiftResponseDto;
 import gradproject.carefli.gift.repository.GiftRepository;
 import gradproject.carefli.preference.domain.Preference;
+import gradproject.carefli.preference.dto.CategoryMbtiResponseDto;
+import gradproject.carefli.preference.repository.CategoryMbtiPreference;
 import gradproject.carefli.preference.repository.PreferenceRepository;
 import gradproject.carefli.user.domain.MBTI;
 import gradproject.carefli.user.domain.User;
@@ -14,7 +16,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -77,6 +81,22 @@ public class PreferenceService {
                             .createdAt(preference.getCreatedAt())
                             .build();
                 })
+                .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public List<CategoryMbtiResponseDto> getCategoryMbtiPreferences() {
+        List<CategoryMbtiPreference> rawPreferences = preferenceRepository.findCategoryMbtiPreferences();
+
+        Map<String, Map<String, Long>> groupedPreferences = new HashMap<>();
+        for (CategoryMbtiPreference rawPreference : rawPreferences) {
+            groupedPreferences
+                    .computeIfAbsent(rawPreference.getCategory(), k -> new HashMap<>())
+                    .put(rawPreference.getMbti(), rawPreference.getPreferenceCount());
+        }
+
+        return groupedPreferences.entrySet().stream()
+                .map(entry -> new CategoryMbtiResponseDto(entry.getKey(), entry.getValue()))
                 .collect(Collectors.toList());
     }
 }
