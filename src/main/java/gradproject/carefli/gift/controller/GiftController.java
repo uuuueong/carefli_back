@@ -5,6 +5,7 @@ import gradproject.carefli.gift.dto.GiftRecommendationResponseDto;
 import gradproject.carefli.gift.dto.GiftResponseDto;
 import gradproject.carefli.gift.service.GiftService;
 import gradproject.carefli.oauth.customAnnotation.AuthUser;
+import gradproject.carefli.preference.dto.CategoryMbtiResponseDto;
 import gradproject.carefli.preference.service.PreferenceService;
 import gradproject.carefli.recommendedGift.service.GiftRecommendationService;
 import gradproject.carefli.user.domain.User;
@@ -64,5 +65,12 @@ public class GiftController {
     public ResponseEntity<List<GiftResponseDto>> getLikeGift(@RequestParam Long connectionId) {
         List<GiftResponseDto> likedGifts = preferenceService.getLikedGiftsByConnection(connectionId);
         return ResponseEntity.ok(likedGifts);
+    }
+
+    //카테고리별 MBTI 선호도 조회
+    @GetMapping("/preference")
+    public ResponseEntity<List<CategoryMbtiResponseDto>> getCategoryMbtiPreferences() {
+        List<CategoryMbtiResponseDto> response = preferenceService.getCategoryMbtiPreferences();
+        return ResponseEntity.ok(response);
     }
 }
