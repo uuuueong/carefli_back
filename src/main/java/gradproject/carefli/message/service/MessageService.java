@@ -58,7 +58,10 @@ public class MessageService {
     //인맥별 문구 조회
     @Transactional(readOnly = true)
     public List<MessageResponseDto> getAllMessagesByConnectionId(User user, Long connectionId) {
-        if (!user.getUserId().equals(connectionId)) {
+        Connection connection = connectionRepository.findById(connectionId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 인맥입니다."));
+
+        if (!connection.getUser().getUserId().equals(user.getUserId())) {
             throw new IllegalArgumentException("권한이 없습니다.");
         }
         List<Message> messages = messageRepository.findByConnectionIdOrderByUpdatedAtDesc(connectionId);
