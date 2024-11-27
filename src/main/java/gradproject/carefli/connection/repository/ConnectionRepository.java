@@ -15,8 +15,6 @@ public interface ConnectionRepository extends JpaRepository<Connection, Long> {
     List<Connection> findByUserId(Long userId);
     @Query("SELECT f from Connection f where f.user.userId = :userId and f.connectionId = :connectionId")
     Optional<Connection> findByUserIdAndConnectionId(Long userId, Long connectionId);
-    @Query("SELECT f FROM Connection f WHERE f.name LIKE CONCAT('%', :searchWord, '%')")
-    List<Connection> findByWord(@Param("searchWord") String searchWord);
-
-
+    @Query("SELECT c FROM Connection c WHERE c.name LIKE CONCAT('%', :searchWord, '%') AND c.user.userId = :userId")
+    List<Connection> findByWordAndUserId(@Param("searchWord") String searchWord, @Param("userId") Long userId);
 }

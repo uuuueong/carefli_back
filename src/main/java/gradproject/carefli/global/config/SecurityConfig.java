@@ -29,7 +29,6 @@ public class SecurityConfig {
     private static final String[] AUTH_WHITELIST = {
             "/api/oauth2/kakao", // 로그인
             "/api/oauth2/reissue",  // 액세스 토큰 재발급
-            "/search", // 검색
             "/gifts/list",
             "/gifts/details",
             "/gifts/recommended/save",
