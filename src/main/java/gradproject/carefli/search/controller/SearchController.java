@@ -1,6 +1,8 @@
 package gradproject.carefli.search.controller;
 
+import gradproject.carefli.oauth.customAnnotation.AuthUser;
 import gradproject.carefli.search.service.SearchService;
+import gradproject.carefli.user.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,7 @@ public class SearchController {
     private final SearchService searchService;
 
     @GetMapping
-    public ResponseEntity<?> search(@RequestParam String connectionName) {
-        return searchService.searchByConnectionName(connectionName);
+    public ResponseEntity<?> search(@AuthUser User user, @RequestParam String connectionName) {
+        return searchService.searchByConnectionName(user.getUserId(), connectionName);
     }
 }
