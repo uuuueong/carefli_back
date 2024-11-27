@@ -17,8 +17,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SearchService {
     private final ConnectionRepository connectionRepository;
-    public ResponseEntity<?> searchByConnectionName(String connectionName) {
-        List<Connection> connections = connectionRepository.findByWord(connectionName);
+    public ResponseEntity<?> searchByConnectionName(Long userId, String connectionName) {
+        List<Connection> connections = connectionRepository.findByWordAndUserId(connectionName, userId);
         List<SearchResponseDto> searchResponseDtos = connections.stream()
                 .map(SearchResponseDto::from)
                 .collect(Collectors.toList());
