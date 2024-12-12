@@ -1,5 +1,6 @@
 package gradproject.carefli.connection.domain;
 
+import gradproject.carefli.giftRecommendationSet.domain.GiftRecommendationSet;
 import gradproject.carefli.global.entity.BaseTimeEntity;
 import gradproject.carefli.connection.dto.ConnectionUpdateRequestDto;
 import gradproject.carefli.user.domain.MBTI;
@@ -10,7 +11,9 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Getter
@@ -42,6 +45,10 @@ public class Connection extends BaseTimeEntity {
 
     @Column(nullable = false, length = 50)
     private String relationship;
+
+    @OneToMany(mappedBy = "connection", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<GiftRecommendationSet> giftRecommendationSets = new ArrayList<>();
+
 
     @Builder
     public Connection(User user, String name, Date birthday, String connectionImageUrl, String interestTag, MBTI mbti, String relationship) {
