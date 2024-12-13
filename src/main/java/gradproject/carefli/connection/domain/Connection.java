@@ -3,6 +3,8 @@ package gradproject.carefli.connection.domain;
 import gradproject.carefli.giftRecommendationSet.domain.GiftRecommendationSet;
 import gradproject.carefli.global.entity.BaseTimeEntity;
 import gradproject.carefli.connection.dto.ConnectionUpdateRequestDto;
+import gradproject.carefli.message.domain.Message;
+import gradproject.carefli.preference.domain.Preference;
 import gradproject.carefli.user.domain.MBTI;
 import gradproject.carefli.user.domain.User;
 import jakarta.persistence.*;
@@ -46,8 +48,14 @@ public class Connection extends BaseTimeEntity {
     @Column(nullable = false, length = 50)
     private String relationship;
 
-    @OneToMany(mappedBy = "connection", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @OneToMany(mappedBy = "connection", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<GiftRecommendationSet> giftRecommendationSets = new ArrayList<>();
+
+    @OneToMany(mappedBy = "connection", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Preference> preferences = new ArrayList<>();
+
+    @OneToMany(mappedBy = "connection", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Message> messages = new ArrayList<>();
 
 
     @Builder
@@ -67,7 +75,6 @@ public class Connection extends BaseTimeEntity {
         this.mbti = requestDto.getMbti();
         this.relationship = requestDto.getRelationship();
     }
-
 
     public void updateImageUrl(String newFileUrl) {
         this.connectionImageUrl = newFileUrl;
