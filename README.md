@@ -75,10 +75,71 @@ java -jar build/libs/carefli-back-0.0.1-SNAPSHOT.jar
 배포된 URL을 통해 테스트할 수 있습니다.
 Base URL : `https://api.carefli.p-e.kr`
 
+### **Postman 다운로드**  
+
+API를 테스트하려면 Postman이 필요합니다. 아래 링크에서 Postman을 다운로드하세요:  
+
+🔗 [Postman 다운로드](https://www.postman.com/downloads/)
+
+### 🎁 **선물 추천 목록 조회**
+
+#### **요청 생성**  
+- **Method**: `GET`  
+- **URL**: `https://api.carefli.p-e.kr/gifts/recommendations/3`  
+
+#### **요청 보내기**  
+1. Postman을 실행합니다.  
+2. **Method**를 `GET`으로 설정하고, **URL**에 `https://api.carefli.p-e.kr/gifts/recommendations/3`를 입력합니다.  
+3. **Send** 버튼을 클릭합니다.
+
+#### **응답 예시**  
+```json
+{
+    "recommendationSetId": 3,
+    "userId": 17,
+    "connectionId": 8,
+    "occasionType": "생일",
+    "recommendedGifts": [
+        {
+            "giftId": 11,
+            "category": "뷰티",
+            "subCategory": "화장품",
+            "giftName": "멜릭서 비건 립 버터 듀오 (12종 중 택2)",
+            "price": 24000,
+            "giftUrl": "https://gift.kakao.com/product/3712419?tab=review&sortProperty=SCORE",
+            "giftImageUrl": "https://carefli-github-actions-s3-bucket.s3.ap-northeast-2.amazonaws.com/giftImages/%5B%E1%84%83%E1%85%A1%E1%86%AB%E1%84%83%E1%85%A9%E1%86%A8%3A%E1%84%89%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AF%E1%84%91%E1%85%A9%E1%84%8C%E1%85%A1%E1%86%BC%5D+%E1%84%87%E1%85%B5%E1%84%80%E1%85%A5%E1%86%AB+%E1%84%85%E1%85%B5%E1%86%B8+%E1%84%87%E1%85%A5%E1%84%90%E1%85%A5+%E1%84%83%E1%85%B2%E1%84%8B%E1%85%A9+(12%E1%84%8C%E1%85%A9%E1%86%BC+%E1%84%8C%E1%85%AE%E1%86%BC+%E1%84%90%E1%85%A2%E1%86%A82).jpeg",
+            "createdAt": null
+        },
+        {
+            "giftId": 25,
+            "category": "디저트",
+            "subCategory": "디저트",
+            "giftName": "스타벅스 부드러운 티라미수 롤케이크",
+            "price": 22900,
+            "giftUrl": "https://gift.kakao.com/product/6508069",
+            "giftImageUrl": "https://carefli-github-actions-s3-bucket.s3.ap-northeast-2.amazonaws.com/giftImages/%22%E1%84%83%E1%85%A1%E1%86%AF%E1%84%8F%E1%85%A9%E1%86%B7%E1%84%92%E1%85%A1%E1%86%AB+%E1%84%8E%E1%85%A9%E1%84%8F%E1%85%A9+%E1%84%89%E1%85%B5%E1%84%90%E1%85%B3%22+%E1%84%89%E1%85%B3%E1%84%90%E1%85%A1%E1%84%87%E1%85%A5%E1%86%A8%E1%84%89%E1%85%B3+%E1%84%87%E1%85%AE%E1%84%83%E1%85%B3%E1%84%85%E1%85%A5%E1%84%8B%E1%85%AE%E1%86%AB+%E1%84%90%E1%85%B5%E1%84%85%E1%85%A1%E1%84%86%E1%85%B5%E1%84%89%E1%85%AE+%E1%84%85%E1%85%A9%E1%86%AF%E1%84%8F%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%8F%E1%85%B3.jpeg",
+            "createdAt": null
+        },
+        {
+            "giftId": 77,
+            "category": "디지털/가전",
+            "subCategory": "가전",
+            "giftName": "오아 감성 블루투스 무선스피커 아이브릭 미니 스피커(OABTSPEAKER2)",
+            "price": 22900,
+            "giftUrl": "https://gift.kakao.com/product/507374",
+            "giftImageUrl": "https://carefli-github-actions-s3-bucket.s3.ap-northeast-2.amazonaws.com/giftImages/%5B%E1%84%8C%E1%85%A1%E1%84%8E%E1%85%B1%3A%E1%84%8C%E1%85%B5%E1%86%B8%E1%84%83%E1%85%B3%E1%86%AF%E1%84%8B%E1%85%B5%E1%84%89%E1%85%A5%E1%86%AB%E1%84%86%E1%85%AE%E1%86%AF%5D+%E1%84%80%E1%85%A1%E1%86%B7%E1%84%89%E1%85%A5%E1%86%BC+%E1%84%87%E1%85%B3%E1%86%AF%E1%84%85%E1%85%AE%E1%84%90%E1%85%AE%E1%84%89%E1%85%B3+%E1%84%86%E1%85%AE%E1%84%89%E1%85%A5%E1%86%AB%E1%84%89%E1%85%B3%E1%84%91%E1%85%B5%E1%84%8F%E1%85%A5+%E1%84%8B%E1%85%A9%E1%84%8B%E1%85%A1+%E1%84%8B%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%87%E1%85%B3%E1%84%85%E1%85%B5%E1%86%A8+%E1%84%86%E1%85%B5%E1%84%82%E1%85%B5+%E1%84%89%E1%85%B3%E1%84%91%E1%85%B5%E1%84%8F%E1%85%A5.jpeg",
+            "createdAt": null
+        }
+    ]
+}
+```
+<img width="928" alt="스크린샷 2024-12-17 오후 3 26 08" src="https://github.com/user-attachments/assets/90127e71-01fc-4f09-b21e-760ac5d0f280" />
+
 ## 4️⃣ <a id="sample-data">Sample Data</a>
 
 ### 1. 선물 CSV 파일 다운로드
 로컬에서 실행하는 경우, 아래 CSV 파일을 MySQL에 직접 Import 후 선물 데이터베이스를 구축할 수 있습니다. <br>
+배포된 주소에서는 이미 선물 데이터베이스가 구축되어 있습니다. <br>
 [gift.csv 다운로드](./gift_data.csv)
 
 ### 2. MySQL 테이블 생성
