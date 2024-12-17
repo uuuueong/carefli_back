@@ -140,7 +140,7 @@ API를 테스트하려면 Postman이 필요합니다. 아래 링크에서 Postma
 ### 1. 선물 CSV 파일 다운로드
 로컬에서 실행하는 경우, 아래 CSV 파일을 MySQL에 직접 Import 후 선물 데이터베이스를 구축할 수 있습니다. <br>
 배포된 주소에서는 이미 선물 데이터베이스가 구축되어 있습니다. <br>
-[gift.csv 다운로드](./gift_data.csv)
+[gift.csv 다운로드](./gift.csv)
 
 ### 2. MySQL 테이블 생성
 CSV 파일 구조에 맞는 MySQL 테이블을 먼저 생성해야 합니다.
