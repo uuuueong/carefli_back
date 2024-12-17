@@ -12,13 +12,13 @@
 지금 바로 케어플리를 이용해보세요!
 </div>
 <p align="center">
-  <a href="#How to Build">How to Build</a> •
-  <a href="#How to Install">How to Install</a> •
-  <a href="#How to Test">How to Test</a> •
-  <a href="#Sample Data">Sample Data</a>
+  <a href="#How-to-Build">How to Build</a> •
+  <a href="#How-to-Install">How to Install</a> •
+  <a href="#How-to-Test">How to Test</a> •
+  <a href="#Sample-Data">Sample Data</a>
 </p>
 
-## 1️⃣ <a id="How to Build">How to Build</a>
+## 1️⃣ <a id="How-to-Build">How to Build</a>
 
 ### 1. Git Clone
 원하는 곳에 프로젝트를 클론하세요.
@@ -41,7 +41,7 @@ ls build/libs
 # 출력 예시: carefli-back-0.0.1-SNAPSHOT.jar
 ```
 
-## 2️⃣ <a id="How to Install">How to Install</a>
+## 2️⃣ <a id="How-to-Install">How to Install</a>
 
 ### 1. Java 17 설치
 #### For macOS
@@ -71,11 +71,11 @@ application.yml 파일은 따로 이메일을 주시면 알려드립니다.
 java -jar build/libs/carefli-back-0.0.1-SNAPSHOT.jar
 ```
 
-## 3️⃣ <a id="How to Test">How to Test</a>
+## 3️⃣ <a id="How-to-Test">How to Test</a>
 배포된 URL을 통해 테스트할 수 있습니다.
 Base URL : `https://api.carefli.p-e.kr`
 
-## 4️⃣ <a id="Sample Data">Sample Data</a>
+## 4️⃣ <a id="Sample-Data">Sample Data</a>
 
 ### 1. 선물 CSV 파일 다운로드
 로컬에서 실행하는 경우, 아래 CSV 파일을 MySQL에 직접 Import 후 선물 데이터베이스를 구축할 수 있습니다. <br>
