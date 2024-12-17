@@ -64,7 +64,7 @@ brew services start mysql
 ### 3. 서버 실행
 #### 1. 환경 설정
 application.yml 파일에서 데이터베이스 및 API 키를 설정하세요.
-application.yml 파일은 따로 이메일을 주시면 알려드립니다.
+application.yml 파일은 따로 이메일을 주시면 알려드립니다. [이메일](smileji86@gmail.com)
 
 #### 2. 빌드된 `.jar` 파일 실행
 ```bash
