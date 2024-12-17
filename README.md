@@ -14,7 +14,8 @@
 <p align="center">
   <a href="#How to Build">How to Build</a> •
   <a href="#How to Install">How to Install</a> •
-  <a href="#How to Test">How to Test</a>
+  <a href="#How to Test">How to Test</a> •
+  <a href="#Sample Data">Sample Data</a>
 </p>
 
 ## 1️⃣ <a id="How to Build">How to Build</a>
@@ -71,7 +72,52 @@ java -jar build/libs/carefli-back-0.0.1-SNAPSHOT.jar
 ```
 
 ## 3️⃣ <a id="How to Test">How to Test</a>
+배포된 URL을 통해 테스트할 수 있습니다.
+Base URL : `https://api.carefli.p-e.kr`
 
+## 4️⃣ <a id="Sample Data">Sample Data</a>
+
+### 1. 선물 CSV 파일 다운로드
+로컬에서 실행하는 경우, 아래 CSV 파일을 MySQL에 직접 Import 후 선물 데이터베이스를 구축할 수 있습니다. <br>
+[gift.csv 다운로드](./gift_data.csv)
+
+### 2. MySQL 테이블 생성
+CSV 파일 구조에 맞는 MySQL 테이블을 먼저 생성해야 합니다.
+
+```sql
+CREATE TABLE gift (
+    gift_id INT AUTO_INCREMENT PRIMARY KEY,
+    category VARCHAR(50) NOT NULL,
+    sub_category VARCHAR(50),
+    gift_name VARCHAR(255) NOT NULL,
+    price INT NOT NULL,
+    occasion_type VARCHAR(50),
+    gift_url VARCHAR(500),
+    gift_image_url VARCHAR(500)
+);
+```
+
+### 3. CSV 파일 Import
+
+```sql
+LOAD DATA LOCAL INFILE '/경로/to/gift.csv'
+INTO TABLE gift
+FIELDS TERMINATED BY '\t' -- CSV가 탭으로 구분된 경우
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS
+(category, sub_category, gift_name, price, occasion_type, gift_url, gift_image_url);
+```
+
+### 추가 내용 (로컬 실행)
+만약 로컬 환경에서 직접 실행하고 싶다면 아래의 단계를 따르세요.
+
+#### 1. Gradle로 로컬 서버 실행
+```bash
+./gradlew bootRun
+```
+
+#### 2. 로컬 접속
+브라우저에서 `http://localhost:8080`으로 접근합니다.
 
 ---
 추가 문의 사항 : [이메일](smileji86@gmail.com)
